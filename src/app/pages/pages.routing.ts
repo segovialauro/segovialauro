@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { MedidaFormComponent } from './medida-form/medida-form.component';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,8 @@ export const routes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'progress', component: ProgressComponent },
             { path: 'grafica1', component: Grafica1Component },
-            { path: 'account-settings', component: AccountSettingsComponent }
+            { path: 'account-settings', component: AccountSettingsComponent },
+            { path: 'medida-form', component: MedidaFormComponent }
         ]
     },
 ];

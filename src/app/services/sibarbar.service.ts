@@ -12,6 +12,7 @@ export class SibarbarService {
         {titulo:'Main', url:'/'},
         {titulo:'ProgressBar', url:'progress'},
         {titulo:'Graficas', url:'grafica1'}, 
+        {titulo:'Medida', url:'medida-form'}, 
       ]
     }
   ] ;
