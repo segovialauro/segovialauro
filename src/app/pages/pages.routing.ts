@@ -12,11 +12,11 @@ export const routes: Routes = [
         path: 'dashboard', 
         component: PagesComponent,
         children: [
-            { path: '', component: DashboardComponent },
-            { path: 'progress', component: ProgressComponent },
-            { path: 'grafica1', component: Grafica1Component },
-            { path: 'account-settings', component: AccountSettingsComponent },
-            { path: 'medida-form', component: MedidaFormComponent }
+            { path: '', component: DashboardComponent, data:{ titulo: 'dashboard'} },
+            { path: 'progress', component: ProgressComponent, data:{ titulo: 'progress'} },
+            { path: 'grafica1', component: Grafica1Component, data:{ titulo: 'grafica1'} },
+            { path: 'account-settings', component: AccountSettingsComponent, data:{ titulo: 'account-settings'} },
+            { path: 'medida-form', component: MedidaFormComponent, data:{ titulo: 'medida-form'} }
         ]
     },
 ];

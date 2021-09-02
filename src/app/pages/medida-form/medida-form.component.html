@@ -1,119 +1,122 @@
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-            <h3>Tabla medida</h3>              
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Abreviatura</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of medidaList; let i= index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{item.nombreMedida}}</td>
-                    <td>{{item.abreviatura}}</td>
-                    <td><span>editar</span> <span>eliminar</span> </td>
-                  </tr>
-                 
-                </tbody>
-              </table>
-              <div class="table table-sm text-center table-responsive table-hover table-bordered ">
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Abreviatura</th>
-                      <th scope="col">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of medidaList; let i= index">
-                      <th scope="row">{{i+1}}</th>
-                      <td>{{item.nombreMedida}}</td>
-                      <td>{{item.abreviatura}}</td>
-                      <td><span>editar</span> <span>eliminar</span> </td>
-                    </tr>
-                   
-                  </tbody>
-                </table>
-              </div>
-
-
-              <!--nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                  <li class="page-item mt-2 mr-3">Total de Datos <strong>{{this.data.totalElements}}</strong>
-                    Pagina <strong>{{this.data.pageNumber}}</strong> de <strong>{{this.data.totalPages}}</strong> </li>
-                    <li class="page-item"  *ngIf='isFirst'  >
-                      <button class="page-link" (click)="rewindPrimera()" tabindex="-1"  [disabled]='isFirst'  style="color:rgb(139, 139, 131);">
-                        Primera</button>
-                    </li>
-                    <li class="page-item" *ngIf='!isFirst'  >
-                      <button class="page-link" (click)="rewindPrimera()" tabindex="-1"  [disabled]='isFirst' >
-                        Primera</button>
-                    </li>
-                  <li class="page-item"  *ngIf='isFirst' >
-                    <button class="page-link" (click)="rewind()" tabindex="-1" [disabled]='isFirst' style="color:rgb(139, 139, 131);" ><i class="fa fa-arrow-left" aria-hidden="true"></i>
-                      Ant.</button>
-                  </li>
-                  <li class="page-item"  *ngIf='!isFirst'  >
-                    <button class="page-link" (click)="rewind()" tabindex="-1" [disabled]='isFirst' ><i class="fa fa-arrow-left" aria-hidden="true"></i>
-                      Ant.</button>
-                  </li>
-                  <li class="page-item"  *ngIf='isLast'   >
-                    <button class="page-link" (click)="forward()" [disabled]='isLast' style="color:rgb(139, 139, 131);"  ><i class="fa fa-arrow-right" aria-hidden="true"></i>
-                      Sig.</button>
-                  </li>
-                  <li class="page-item"  *ngIf='!isLast'   >
-                    <button class="page-link" (click)="forward()" [disabled]='isLast'  ><i class="fa fa-arrow-right" aria-hidden="true"></i>
-                      Sig.</button>
-                  </li>
-                  <li class="page-item" *ngIf='isLast'  >
-                    <button class="page-link" (click)="rewindUltima()" [disabled]='isLast' style="color:rgb(139, 139, 131); " >
-                      Última</button>
-                  </li>
-                  <li class="page-item" *ngIf='!isLast' >
-                    <button class="page-link" (click)="rewindUltima()" [disabled]='isLast'>
-                      Última</button>
-                  </li>
-                </ul>
-              </nav-->
-          
-
-
-
-
-            <h1>Medidas</h1>
-            <form #medidaForm="ngForm" nonvalidate (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="nombreMedida">Nombre Medida</label>
-                    <input type="text" required #nombreMedida="ngModel" name="nombreMedida"
-                        placeholder="Nombre Medida" class="form-control"
-                        [class.is-invalid]="nombreMedida.invalid && nombreMedida.touched" [(ngModel)]="medida.nombreMedida">
-                        <small class="text-danger" [class.d-none]="nombreMedida.valid || nombreMedida.untouched">
-                            Nombre Medida es requerido</small>
-                </div>
-                <div class="form-group">
-                    <label for="abreviatura">Abreviatura</label>
-                    <input type="text" #abreviatura="ngModel" name="abreviatura"
-                     placeholder="Abrebiatura" class="form-control" pattern=".{1,10}" 
-                     [class.is-invalid]="abreviatura.invalid && abreviatura.touched" [(ngModel)]="medida.abreviatura">
-                     <div *ngIf="abreviatura.errors && (abreviatura.invalid || abreviatura.touched)">
-                         <small class="text-danger" *ngIf="abreviatura.errors.pattern">Debe tener como minimo 1 caracter y maximo 10</small>
-                     </div>
-                </div>
-                <hr/>
-                <div>
-                    <button [disabled]="medidaForm.form.invalid" class="btn btn-primary" type="submit">Enviar</button>
-                </div>
-                
-            </form>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="mensajeExito" class="alert alert-success" role="alert">
+          {{mensaje}}
         </div>
+        <div *ngIf="mensajeError" class="alert alert-danger" role="alert">
+          {{mensaje}}
+        </div>
+        <div *ngIf="mensajeAdvertencia" class="alert alert-warning" role="alert">
+          {{mensaje}}
+        </div>
+        <div *ngIf="mensajeInfo" class="alert alert-info" role="alert">
+          {{mensaje}}
+        </div>
+        <h3>Tabla medida</h3>
+        <button class="btn btn-primary m-2" (click)="agregarNuevo()">Agregar {{nuevo}}</button>
+
+        <div class="table table-sm text-center table-responsive table-hover table-bordered ">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Abreviatura</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of medidaList; let i= index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.nombreMedida}}</td>
+                <td>{{item.abreviatura}}</td>
+                <td><i class="fa fa-edit selector" (click)="editar(item)"></i> <span> | </span> <i
+                    (click)="eliminar(item)" class="fa fa-trash-o selector"></i> </td>
+                <td [class]="btnColor">{{item.estado}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            <li class="page-item mt-2 mr-3">Total de Datos <strong>{{totalElements}}</strong>
+              Pagina <strong>{{pageNumber}}</strong> de <strong>{{totalPages}}</strong> </li>
+            <li class="page-item" *ngIf='isFirst'>
+              <button class="page-link" (click)="rewindPrimera()" tabindex="-1" [disabled]='isFirst'
+                style="color:rgb(139, 139, 131);">
+                Primera</button>
+            </li>
+            <li class="page-item" *ngIf='!isFirst'>
+              <button class="page-link" (click)="rewindPrimera()" tabindex="-1" [disabled]='isFirst'>
+                Primera</button>
+            </li>
+            <li class="page-item" *ngIf='isFirst'>
+              <button class="page-link" (click)="rewind()" tabindex="-1" [disabled]='isFirst'
+                style="color:rgb(139, 139, 131);"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                Ant.</button>
+            </li>
+            <li class="page-item" *ngIf='!isFirst'>
+              <button class="page-link" (click)="rewind()" tabindex="-1" [disabled]='isFirst'><i
+                  class="fa fa-arrow-left" aria-hidden="true"></i>
+                Ant.</button>
+            </li>
+            <li class="page-item" *ngIf='isLast'>
+              <button class="page-link" (click)="forward()" [disabled]='isLast' style="color:rgb(139, 139, 131);"><i
+                  class="fa fa-arrow-right" aria-hidden="true"></i>
+                Sig.</button>
+            </li>
+            <li class="page-item" *ngIf='!isLast'>
+              <button class="page-link" (click)="forward()" [disabled]='isLast'><i class="fa fa-arrow-right"
+                  aria-hidden="true"></i>
+                Sig.</button>
+            </li>
+            <li class="page-item" *ngIf='isLast'>
+              <button class="page-link" (click)="rewindUltima()" [disabled]='isLast' style="color:rgb(139, 139, 131); ">
+                Última</button>
+            </li>
+            <li class="page-item" *ngIf='!isLast'>
+              <button class="page-link" (click)="rewindUltima()" [disabled]='isLast'>
+                Última</button>
+            </li>
+          </ul>
+        </nav>
+
+
+        <div *ngIf="agregar" class="container">
+          <h1>Medidas</h1>
+          <form #medidaForm="ngForm" nonvalidate (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="nombreMedida">Nombre Medida</label>
+              <input type="text" required #nombreMedida="ngModel" name="nombreMedida" placeholder="Nombre Medida"
+                class="form-control" [class.is-invalid]="nombreMedida.invalid && nombreMedida.touched"
+                [(ngModel)]="medida.nombreMedida">
+              <small class="text-danger" [class.d-none]="nombreMedida.valid || nombreMedida.untouched">
+                Nombre Medida es requerido</small>
+            </div>
+            <div class="form-group">
+              <label for="abreviatura">Abreviatura</label>
+              <input type="text" #abreviatura="ngModel" name="abreviatura" placeholder="Abrebiatura"
+                class="form-control" pattern=".{1,10}" [class.is-invalid]="abreviatura.invalid && abreviatura.touched"
+                [(ngModel)]="medida.abreviatura">
+              <div *ngIf="abreviatura.errors && (abreviatura.invalid || abreviatura.touched)">
+                <small class="text-danger" *ngIf="abreviatura.errors.pattern">Debe tener como minimo 1 caracter y maximo
+                  10</small>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <button [disabled]="medidaForm.form.invalid" class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
